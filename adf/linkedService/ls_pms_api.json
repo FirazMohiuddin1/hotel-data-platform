@@ -1,0 +1,23 @@
+{
+	"name": "ls_pms_api",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://func-hotel-pms-f5f1eb.azurewebsites.net/api/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "OAuth2ClientCredential",
+			"clientId": "adf-pipeline",
+			"clientSecret": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "pms-api-client-secret"
+			},
+			"tokenEndpoint": "https://func-hotel-pms-f5f1eb.azurewebsites.net/api/oauth/token",
+			"scope": "pms.read"
+		}
+	}
+}
