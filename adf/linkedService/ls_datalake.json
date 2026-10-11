@@ -1,0 +1,10 @@
+{
+	"name": "ls_datalake",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://sthoteldlf5f1eb.dfs.core.windows.net/"
+		}
+	}
+}

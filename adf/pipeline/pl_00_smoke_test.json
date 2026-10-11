@@ -1,0 +1,87 @@
+{
+	"name": "pl_00_smoke_test",
+	"properties": {
+		"activities": [
+			{
+				"name": "Check_SQL_source",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT COUNT(*) AS reservations, MAX(last_modified_utc) AS latest_change_utc FROM pms.reservation",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_pms_sql",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Copy_API_hotels_to_landing",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 60,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_pms_api",
+						"type": "DatasetReference",
+						"parameters": {
+							"relative_url": "v1/hotels"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_lake_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "landing",
+							"folder": "_smoke_test",
+							"file": "hotels.json"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

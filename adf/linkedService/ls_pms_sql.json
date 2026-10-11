@@ -1,0 +1,23 @@
+{
+	"name": "ls_pms_sql",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "sql-hotel-pms-f5f1eb-centralus.database.windows.net",
+			"database": "pms",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "pms_reader",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "pms-sql-reader-password"
+			}
+		}
+	}
+}
