@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-hotel-f5f1eb"
+		},
+		"ls_datalake_properties_typeProperties_url": {
+			"value": "https://sthoteldlf5f1eb.dfs.core.windows.net/"
+		},
+		"ls_keyvault_properties_typeProperties_baseUrl": {
+			"value": "https://kv-hotel-f5f1eb.vault.azure.net/"
+		},
+		"ls_pms_api_properties_typeProperties_url": {
+			"value": "https://func-hotel-pms-f5f1eb.azurewebsites.net/api/"
+		},
+		"ls_pms_api_properties_typeProperties_clientId": {
+			"value": "adf-pipeline"
+		},
+		"ls_pms_sql_properties_typeProperties_server": {
+			"value": "sql-hotel-pms-f5f1eb-centralus.database.windows.net"
+		},
+		"ls_pms_sql_properties_typeProperties_database": {
+			"value": "pms"
+		},
+		"ls_pms_sql_properties_typeProperties_userName": {
+			"value": "pms_reader"
+		}
+	}
+}
