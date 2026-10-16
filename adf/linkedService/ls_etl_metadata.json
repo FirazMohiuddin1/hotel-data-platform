@@ -1,0 +1,15 @@
+{
+	"name": "ls_etl_metadata",
+	"properties": {
+		"description": "Pipeline notes: watermark table",
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "sql-hotel-etl-f5f1eb-centralus.database.windows.net",
+			"database": "etl_metadata",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SystemAssignedManagedIdentity"
+		}
+	}
+}
